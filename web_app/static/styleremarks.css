@@ -1,0 +1,257 @@
+/*style remarks*/
+
+* {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+/*bg gradient*/
+body {
+    background-image: linear-gradient(to top left,#3b3840, #384556, #212636);
+    margin: 10px;
+}
+/*inner container*/
+.container {
+    border-radius: 25px;
+    width: 1400px;
+    height: 1000px;
+    background: linear-gradient(rgba(60, 64, 82, 0.9), rgba(60, 64, 82, 0.9)), url(/static/uplogo.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: auto;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+}
+
+/*CFA title*/
+
+
+.header img {
+    float: left;
+    width: 75px;
+    height: 75px;
+    margin: 5px;
+    margin-right: 20px;
+  }
+
+.header h1 {
+    position: relative;
+    text-align:left;
+    color: #dee6f9;
+    text-shadow: 5px 5px 5px #141622;
+    font-size: 40px;
+    padding: 20px 20px 20px 50px;
+    border-bottom: 9px solid #242c38;
+    margin-left: auto;
+    margin-bottom: 0%;
+}
+
+/*Remarks title*/
+
+.pagetitle h2{
+    text-align:left;
+    color: #dee6f9;
+    text-shadow: 5px 5px 5px #141622;
+    font-size: 60px;
+    margin-top: 7px;
+    margin-left: 50px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+}
+
+/*Description title*/
+
+.pagetitle h3{
+    text-align:left;
+    text-indent: 75px;
+    color: #dee6f9;
+    font-weight: 80px;
+    text-shadow: 5px 5px 5px #421188;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 0px;
+    margin-bottom: 8px;
+    background-color: rgba(27, 32, 52, 0.6);
+    padding: 8px;
+}
+
+
+/*Table-related designs*/
+
+.table{
+  display: block;
+  height: 630px;
+  overflow-y: scroll;
+}
+
+/**/
+.force-overflow {
+    min-height: 450px;
+  }
+  
+.table::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid #2c2a28;
+    padding: 2px 0;
+    background-color: #2c2a28;
+  }
+  
+.table::-webkit-scrollbar {
+    border-radius: 10px;
+    width: 12px;
+  }
+  
+.table::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #141622;
+  }
+
+/**/
+
+.table td, .table th {
+  table-layout: fixed;
+  border-style: double;
+  border-color: #384556;
+  width: 500px;
+  padding: 3px;
+}
+
+.table th {
+    position: sticky;
+    top: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    background-color: #191d29;
+    color: #dfeafb;
+    font-size: 16px;
+  }
+
+.table tr:nth-child(even){
+   background-color: #2e353f;
+}
+ 
+.table tr:nth-child(odd){
+    background-color: #242c38;
+ }
+
+.table tr:hover {
+    background-color: #2e2d2c;
+}
+
+.table td {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+  }
+
+/*make first column wider for remarks*/
+.table tr th:nth-child(1){
+    width: 60%;
+  }
+
+/*Home,Logout and link ref buttons*/
+p {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0;
+  overflow: hidden;
+  background-color: #242735;
+  width: 13%;
+  border-radius: 3px;
+}
+
+p {
+    display: inline-block;
+}
+
+p.ml-4 a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+p.ml-4 a:hover {
+    background-color: #2e2d2c;
+  }
+
+.active {
+    background-color: #2e2d2c;
+}
+
+p.square{
+  height: 50px;
+  width: 1027px;
+  background-color: #242735;
+  overflow: hidden;
+}
+
+/*add remark href to the right*/
+.container .mref p {
+    align-self:flex-end;
+    margin-left: 1200px;
+}
+
+
+/*new_remark.html variation---------------------------------*/
+
+/*New remark input box*/
+    /*input box*/
+
+    .container form {
+        list-style-type: none;
+        margin-right: 30px;
+        margin-bottom: 10px;
+        margin-top: 65px;
+        padding: 25px;
+        overflow: hidden;
+        background-color:rgba(27, 32, 52, 0.6);
+        width: 100%;
+        text-align: center;
+    }
+    
+    input[type=text] {
+        background-color: #1c1c2b;
+        color: #f6f8fe;
+        width: 70%;
+        height: 50px;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 2px solid #1c1c2b;
+        border-radius: 5px;
+        outline: none;
+        align-self: start;
+        margin-right: 10px;
+    }
+    
+        /*active outline of form*/
+    input[type=text]:focus {
+        border: 2px solid #63625c;
+    }
+    
+    input[type=submit] {
+        padding: 10px;
+        background-color: #1c1925;
+        color: white;
+        font-weight: bold;
+        outline: none;
+        border: none;
+        height: 55px;
+        border-radius: 15%;
+    }
+    
+    input[type=submit]:hover {
+        background-color: #322f2c;  
+    }

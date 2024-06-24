@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Edit/Delete a record - {{ account }}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='styleadddelrecord.css') }}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+</head>
+<body>
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-lg-10 mx-lg-auto">
+
+	<div class="header">
+		<img src="/static/logo.png" alt="logo">
+		<h1 class="pt-5 pb-2">CFA Student Record Database - ADMIN</h1>
+	</div>
+
+	<p class="ml-4"><a href="{{ url_for('home') }}">Home</a></p>
+	<p class="ml-4"><a href="{{ url_for('accesslogs') }}">Check access logs</a></p>
+	<p class="ml-4"><a href="{{ url_for('new_record') }}">Add new record</a></p>
+	<p class="ml-4"><a class="active" href="{{ url_for('select_record') }}">Edit/Delete record</a></p>
+	<p class="ml-4"><a href="{{ url_for('register') }}">Create new user</a></p>
+	<p class="ml-4"><a href="{{ url_for('select_user') }}">Edit/Delete user</a></p>
+	<p class="ml-4"><a href="{{ url_for('logout') }}">Logout</a></p>
+      
+	<p class="square2"></p>
+
+	<div class="pagetitle">
+		<h2>Select a record</h2>
+		<h3>Choose a record to EDIT or DELETE.</h3>
+	</div>
+
+	<form action="{{ url_for('select_record') }}" method="post">
+		<input type="text" name="search_id" placeholder="Enter Student ID..." id="search_id" required>
+		<input type="submit" value="Search">
+	</form>
+
+	<form action="{{ url_for('edit_or_delete') }}" method="post" id="tableform">
+	 <!--	
+      <h1 class="pt-5 pb-2">Select a Record</h1>
+
+      <p class="lead alert alert-success">Select a record to edit or delete.</p>
+
+	  <p class="ml-4"><a href="{{ url_for('home') }}">Return home.</a></p>
+	  {% if search == 1 %}
+	  <p class="ml-4"><a href="{{ url_for('select_record') }}">Go back.</a></p>
+	  {% endif %}
+
+      <form action="{{ url_for('select_record') }}" method="post">
+            <input type="text" name="search_id" placeholder="StudentID" id="search_id" required>
+            <input type="submit" value="Search">
+      </form>
+
+	  -->
+	  <!-- start form - not using WTForms here -->
+	  
+
+		<table class="table">
+			<tr>
+				<th>----</th>
+				<th>Student ID</th>
+				<th>Student Name</th>
+				<th>Link to Records</th>
+				<th>Remarks</th>
+			</tr>
+
+			<!-- here is a for-loop to give us all the socks -->
+			{% for record in database %}
+			<tr>
+				<!--<td class="center-align"><input type="radio" name="id" value="{{ record.student_id }}" required></td>-->
+				<td><label class="check"><input type="radio"name="id" value="{{ record.student_id }}" required>
+					<span class="checkmark"></span></label>
+				</td>
+				<td>{{ record.student_id }}</td>
+				<td>{{ record.student_name }}</td>
+				<td>{{ record.link_to_records }}</td>
+				<td>
+					<a href="{{ url_for('remarks', studentid=record.student_id) }}">Remarks</a>
+                </td>
+			</tr>
+			{% endfor %}
+		</table>
+		
+		<div class="q">
+            <qa>Edit or delete the selected record?</qa>
+
+            <div class="qb">
+				<label class="check"><input class="form-check-input" type="radio" name="choice" value="delete" required> Delete record
+					<span class="checkmark"></span></label>
+            </div>
+            <div class="qb">
+				<label class="check"><input class="form-check-input" type="radio" name="choice" value="edit" required> Edit record
+					<span class="checkmark"></span></label>
+            </div>
+        </div>
+		
+		<!-- end form-group -->
+
+		<div class="form-group">
+	        <input class="btn btn-success" type="submit" value="Submit Choice" id="botbutton">
+        </div>
+
+		</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>
+

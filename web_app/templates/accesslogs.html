@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Remarks - {{ account }}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styleaccesslogs.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+<body>
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+		
+		<div class="header">
+			<img src="/static/logo.png" alt="logo">
+			<h1 class="pt-5 pb-2">CFA Student Record Database - ADMIN</h1>
+		</div>
+
+	    <p class="ml-4"><a href="{{ url_for('home') }}">Home</a></p>
+		<p class="ml-4"><a class="active" href="{{ url_for('accesslogs') }}">Check access logs</a></p>
+		<p class="ml-4"><a href="{{ url_for('new_record') }}">Add new record</a></p>
+	    <p class="ml-4"><a href="{{ url_for('select_record') }}">Edit/Delete record</a></p>
+	    <p class="ml-4"><a href="{{ url_for('register') }}">Create new user</a></p>
+	    <p class="ml-4"><a href="{{ url_for('select_user') }}">Edit/Delete user</a></p>
+		<p class="ml-4"><a href="{{ url_for('logout') }}">Logout</a></p>
+      
+		<p class="square2"></p>
+
+		<div class="pagetitle">
+			<h2>Access logs</h2>
+			<h3>Looking at all Google Drive accesses within the database</h3>
+		</div>
+
+        <form action="{{ url_for('accesslogs') }}" method="post">
+          <input type="text" name="search_id" placeholder="Enter Student ID..." id="search_id" required>
+          <input type="submit" value="Search">
+        </form>
+      
+		<table class="table">
+			<tr>
+				<th>Student ID</th>
+				<th>Adviser</th>
+				<th>Time Accessed</th>
+			</tr>
+
+			<!-- here is a for-loop to give us all the socks -->
+			{% for record in database %}
+			<tr>
+				<td>{{ record.student_accessed }}</td>
+				<td>{{ record.accessing_adviser }}</td>
+				<td>{{ record.time_accessed }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

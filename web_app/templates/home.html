@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='stylehome.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+<body>
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+		<div class="header">
+			<img src="/static/logo.png" alt="logo">
+			<h1 class="pt-5 pb-2">CFA Student Record Database</h1>
+		</div>
+
+		<!--<h1 class="pt-5 pb-2"><img src="/static/logo.png" alt="logo"/>CFA Student Record Database</h1>-->
+		
+	    <p class="ml-4"><a class="active" href="{{ url_for('home') }}">Home</a></p>
+	    <p class="ml-4"><a href="{{ url_for('logout') }}">Logout</a></p>
+		<!--<p class="lead alert alert-warning">List of all student records stored in the database</p>-->
+
+		<p class="square"></p>
+
+        <form action="{{ url_for('home') }}" method="post">
+          <input type="text" name="search_id" placeholder="Enter Student ID" id="search_id" required>
+          <input type="submit" value="Search">
+        </form>
+      
+		<table class="table">
+			<tr>
+				<th>Student ID</th>
+				<th>Student Name</th>
+				<th>Link to Google Drive Records</th>
+				<th>Remarks</th>
+			</tr>
+
+			<!-- here is a for-loop to give us all the socks -->
+			{% for record in database %}
+			<tr>
+				<td>{{ record.student_id }}</td>
+				<td>{{ record.student_name }}</td>
+				<form method="post">
+					<td><input type="submit" name="viewrecords" onclick="alert('{{ record.link_to_records }}')" value="View Records"></td>
+					<input type="hidden" name="student_id" value="{{ record.student_id }}">
+				</form>
+                <td>
+					<a href="{{ url_for('remarks', studentid=record.student_id) }}">Remarks</a>
+                </td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Edit/Delete a record - {{ account }}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styledeledituser2.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+<body>
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-lg-10 mx-lg-auto">
+
+	<div class="header">
+		<img src="/static/logo.png" alt="logo">
+		<h1 class="pt-5 pb-2">CFA Student Record Database - ADMIN</h1>
+	</div>
+
+		<p class="ml-4"><a href="{{ url_for('home') }}">Home</a></p>
+		<p class="ml-4"><a href="{{ url_for('accesslogs') }}">Check access logs</a></p>
+		<p class="ml-4"><a href="{{ url_for('new_record') }}">Add new record</a></p>
+		<p class="ml-4"><a href="{{ url_for('select_record') }}">Edit/Delete record</a></p>
+		<p class="ml-4"><a href="{{ url_for('register') }}">Create new user</a></p>
+		<p class="ml-4"><a class="active" href="{{ url_for('select_user') }}">Edit/Delete user</a></p>
+		<p class="ml-4"><a href="{{ url_for('logout') }}">Logout</a></p>
+
+		{% if choice == 'delete' %}
+			<div class="pagetitle">
+				<h2>Delete a User Account</h2>
+			</div>
+	  	{% elif choice == 'edit' %}
+		  <div class="pagetitle">
+			<h2>Edit a User Account</h2>
+		</div>
+	  	{% endif %}
+	  <!-- ----- THIS TEMPLATE HAS TWO FORMS ----- -->
+	  <!-- but only one will be visible, depending on how the template
+  		   was opened -->
+
+	  <!-- ----- start delete sock content ----- -->
+
+	  {% if choice == 'delete' %}
+
+	    <div class="pagetitle">
+			<h3>Are you sure you want to DELETE this user?</h3>
+		</div>
+
+		<!-- table showing the selected sock -->
+		<table class="table">
+			<tr>
+				<th>Username</th>
+				<th>Password</th>
+				<th>Role</th>
+			</tr>
+
+			<!-- just one sock here -->
+			<tr>
+				<td>{{ record.username }}</td>
+				<td>{{ record.password }}</td>
+				<td>{{ record.role }}</td>
+			</tr>
+
+		</table>
+
+
+		<div class="choices">
+			<!-- start form for deleting record - not quickform but still WTForms -->
+				<a><form action="{{ url_for('select_user') }}" method="POST" id="select">
+				<input type="submit" value="Return to User Selection page">
+			</form>
+			</a>
+			<a><form action="{{ url_for('delete_user') }}" method="POST" id="delete">
+				<input type="hidden" id="username" name="username" value="{{record.username}}">
+				<input type="submit" value="Delete this user">
+			</form>
+			</a>
+		</div>
+
+		<!-- start form for deleting record - not quickform but still WTForms
+  		<form action="{{ url_for('delete_user') }}" method="POST" id="delete">
+            <input type="hidden" id="username" name="username" value="{{record.username}}">
+            <input type="submit" value="Delete this record">
+		</form>-->
+		<!-- end form -->
+
+
+		<!-- ----- end delete sock content ----- -->
+		{% else %}
+
+		<!-- ----- start edit sock content ----- -->
+
+		<div class="pagetitle">
+			<h3>Edit the selected User below:</h3>
+		</div>
+
+		<!-- links -->
+
+		<form action="{{ url_for('edit_user') }}" method="post" id="addform" autocomplete="off">
+            
+			<input disabled value="{{record.username}}">
+            <input type="hidden" id="username" name="username" value="{{record.username}}">
+
+            <input type="text" name="password" placeholder="Enter new password..." id="password" value="{{record.password}}">
+
+            <input type="submit" value="Submit edit">
+        </form>
+		{% endif %}
+
+		</div>
+	</div>
+</div>
+</body>
+</html>

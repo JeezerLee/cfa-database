@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Remarks - {{ account }}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styleremarks.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+<body>
+    <div class="container">
+        <div class="row pb-5">
+            <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+            <div class="header">
+                <img src="/static/logo.png" alt="logo">
+                <h1 class="pt-5 pb-2">CFA Student Record Database</h1>
+            </div>
+            
+
+            <p class="ml-4"><a href="{{ url_for('home') }}">Home</a></p>
+            <p class="ml-4"><a href="{{ url_for('remarks', studentid=studentid) }}">Go back</a></p>
+
+            <p class="square"></p>
+
+            <div class="pagetitle">
+                <h2>New remark</h2>
+                <h3>Add a remark for {{ studentid }}</h3>
+            </div>
+
+			<form action="{{ url_for('new_remark', studentid=studentid) }}" method="post" autocomplete="off">
+				<input type="text" name="remark" placeholder="Add a remark..." id="remark" required>
+				<input type="submit" value="Submit remark">
+            </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

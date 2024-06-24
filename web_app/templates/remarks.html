@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Remarks - {{ account }}</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='styleremarks.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+	</head>
+<body>
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+		<div class="header">
+			<img src="/static/logo.png" alt="logo">
+			<h1 class="pt-5 pb-2">CFA Student Record Database</h1>
+		</div>
+
+	    <p class="ml-4"><a href="{{ url_for('home') }}">Home</a></p>
+		<p class="ml-4"><a href="{{ url_for('logout') }}">Logout</a></p>
+
+		<p class="square"></p>
+
+		<div class="pagetitle">
+			<h2>Remarks</h2>
+			<h3>Looking at remarks for {{ studentid }}</h3>
+		</div>
+
+		<div class="mref">
+			<p class="ml-4"><a href="{{ url_for( 'new_remark', studentid=studentid ) }}">Add a new remark</a></p>
+		</div>
+
+		<table class="table">
+			<tr>
+				<th>Remark</th>
+				<th>Date</th>
+				<th>Adviser</th>
+			</tr>
+
+			<!-- here is a for-loop to give us all the socks -->
+			{% for record in remarks %}
+			<tr>
+				<td>{{ record.remark }}</td>
+				<td>{{ record.date }}</td>
+				<td>{{ record.adviser }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		</div>
+	</div>
+</div>
+</body>
+</html>
